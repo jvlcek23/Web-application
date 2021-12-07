@@ -54,7 +54,7 @@ let loadPhoto = (currentPhoto) => {
    $('#photo').attr('src',objectList[currentPhoto].photo);
     $('#title').html(objectList[currentPhoto].title);
     $('#description').html(objectList[currentPhoto].description); 
-}
+};
 
 loadPhoto(currentPhoto);
 
@@ -74,5 +74,16 @@ $('#left').click(() => {
     loadPhoto(currentPhoto);
 });
 
+    let data = objectList;
+    data.forEach((item,index) => {
+    let imgsrc = data[index].photo;
+    $('.thumbsbox').append('<img class="thumbnail" data-index="${index}" src= "'+imgsrc+'">');
+        }); 
+    $('.thumbnail').click((event) => {
+        let thumbClicked = $(event.target).attr('data-index');
+        let thumbClickedNum = parseInt(thumbClicked);
+        currentPhoto = thumbClickedNum;   
+        loadPhoto(currentPhoto);   
+});
 
 
